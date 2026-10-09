@@ -23,3 +23,22 @@ export interface SectionProps {
   className?: string;
 }
 
+export interface EducationItem {
+  id: string;
+  degree: string;
+  institution: string;
+  affiliation?: string;
+  location?: string;
+  completedYear: string;
+  programType?: string;
+  cgpa?: string;
+  percentage?: string;
+  duration?: string;
+  hours?: string;
+  credits?: string;
+  selfStudyHours?: string;
+  isFeatured?: boolean;
+  featuredBadge?: string;
+}
+
+

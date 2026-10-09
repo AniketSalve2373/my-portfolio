@@ -26,3 +26,45 @@ export const siteConfig: SiteConfig = {
   ],
 };
 
+export const educationData = [
+  {
+    id: 'pgcp-ac',
+    degree: 'PG Certificate Programme in Advanced Computing (PGCP-AC)',
+    institution: 'Centre for Development of Advanced Computing (C-DAC), Kharghar, Mumbai',
+    completedYear: '2026',
+    programType: '24-Week Full-Time Post Graduate Certificate Programme',
+    duration: '24 Weeks',
+    hours: '1200 Hours',
+    credits: '40 Credits',
+    selfStudyHours: '300 Hours Self-Study Included',
+    isFeatured: true,
+    featuredBadge: 'Post Graduate Specialization',
+  },
+  {
+    id: 'be-cse',
+    degree: 'B.E. - Computer Science and Engineering',
+    institution: 'D. Y. Patil College of Engineering, Akurdi, Pune',
+    affiliation: 'Affiliated to Savitribai Phule Pune University (SPPU)',
+    completedYear: '2025',
+    cgpa: '8.34/10',
+    percentage: '75.90%',
+  },
+  {
+    id: 'hsc',
+    degree: 'HSC',
+    institution: 'Shri Shanishwar Junior College, Sonai',
+    affiliation: 'Affiliated to SPPU',
+    completedYear: '2021',
+    percentage: '86.50/100',
+  },
+  {
+    id: 'ssc',
+    degree: 'SSC',
+    institution: 'Shri Shanishwar Vidya Mandir, Sonai',
+    affiliation: 'Affiliated to SPPU',
+    completedYear: '2019',
+    percentage: '81.80/100',
+  },
+];
+
+
