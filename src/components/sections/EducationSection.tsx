@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   GraduationCap,
   Award,
@@ -9,15 +9,19 @@ import {
   Sparkles,
   Building2,
   BadgeCheck,
+  ChevronRight,
 } from 'lucide-react';
 import { Container } from '../common/Container';
 import { SectionHeader } from '../common/SectionHeader';
 import { Card } from '../common/Card';
 import { Badge } from '../common/Badge';
+import { Button } from '../common/Button';
+import { PGCPDetailsModal } from './PGCPDetailsModal';
 import { educationData } from '../../config/siteConfig';
 import type { SectionProps } from '../../types';
 
 export const EducationSection: React.FC<SectionProps> = ({ id = 'education', className = '' }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const pgcp = educationData.find((e) => e.id === 'pgcp-ac');
   const be = educationData.find((e) => e.id === 'be-cse');
   const hsc = educationData.find((e) => e.id === 'hsc');
@@ -117,10 +121,23 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
                       </div>
                     </div>
 
-                    {/* Self study note */}
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400 pt-1">
-                      <Clock className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-                      <span>{pgcp.selfStudyHours}</span>
+                    {/* Action Bar & Self study note */}
+                    <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-400">
+                        <Clock className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
+                        <span>{pgcp.selfStudyHours}</span>
+                      </div>
+                      
+                      <Button
+                        onClick={() => setIsModalOpen(true)}
+                        variant="primary"
+                        size="md"
+                        className="font-bold shadow-sm hover:shadow transition-all text-xs sm:text-sm px-4 py-2"
+                        icon={<ChevronRight className="w-4 h-4" />}
+                        iconPosition="right"
+                      >
+                        Programme Details
+                      </Button>
                     </div>
 
                   </div>
@@ -129,6 +146,15 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
               </div>
             </div>
           )}
+
+        {/* PGCP Details Modal */}
+        {pgcp?.details && (
+          <PGCPDetailsModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            details={pgcp.details}
+          />
+        )}
 
           {/* ENTRY 2: B.E. - COMPUTER SCIENCE AND ENGINEERING */}
           {be && (

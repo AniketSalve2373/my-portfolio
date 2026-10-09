@@ -1,4 +1,4 @@
-import type { SiteConfig } from '../types';
+import type { SiteConfig, EducationItem } from '../types';
 
 export const siteConfig: SiteConfig = {
   name: 'Aniket Madhukar Salve',
@@ -26,7 +26,7 @@ export const siteConfig: SiteConfig = {
   ],
 };
 
-export const educationData = [
+export const educationData: EducationItem[] = [
   {
     id: 'pgcp-ac',
     degree: 'PG Certificate Programme in Advanced Computing (PGCP-AC)',
@@ -39,6 +39,57 @@ export const educationData = [
     selfStudyHours: '300 Hours Self-Study Included',
     isFeatured: true,
     featuredBadge: 'Post Graduate Specialization',
+    details: {
+      programme: 'PG Certificate Programme in Advanced Computing (PGCP-AC)',
+      institution: 'Centre for Development of Advanced Computing (C-DAC), Kharghar, Mumbai',
+      completedYear: '2026',
+      programType: '24-Week Full-Time Post Graduate Certificate Programme',
+      statistics: {
+        duration: '24 Weeks',
+        format: 'Full-Time',
+        totalHours: '1200 Hours',
+        credits: '40 Credits',
+        selfStudy: '300 Hours Self-Study Included',
+      },
+      description:
+        'The PG Certificate Programme in Advanced Computing (PGCP-AC) is a 24-week full-time postgraduate certificate programme designed for Engineering Graduates and MCA/MSc graduates. The programme provides industry-oriented training in advanced computing and software technologies and prepares students to work with current technology scenarios and the evolving requirements of the software industry.',
+      coreCurriculum: [
+        { title: 'C++ Programming', hours: '90 Hrs' },
+        { title: 'Database Technologies', hours: '90 Hrs' },
+        { title: 'Concepts of Operating System & Software Development Methodologies', hours: '60 Hrs' },
+        { title: 'Object Oriented Programming with Java', hours: '150 Hrs' },
+        { title: 'Algorithms and Data Structures Using Java', hours: '90 Hrs' },
+        { title: 'Web Programming Technologies', hours: '150 Hrs' },
+        { title: 'Web-based Java Programming', hours: '150 Hrs' },
+        { title: 'Microsoft .NET Technologies', hours: '120 Hrs' },
+        { title: 'Aptitude', hours: '60 Hrs' },
+        { title: 'Effective Communication', hours: '60 Hrs' },
+        { title: 'Project', hours: '180 Hrs' },
+      ],
+      skillsDeveloped: [
+        'C++',
+        'Java',
+        'Object-Oriented Programming',
+        'Data Structures & Algorithms',
+        'Database Technologies',
+        'HTML5',
+        'CSS',
+        'JavaScript',
+        'jQuery',
+        'React.js',
+        'Web-based Java Programming',
+        'Enterprise Java / Multi-tier Architecture',
+        'Microsoft .NET Technologies',
+        'Software Development Methodologies',
+        'Analytical & Problem-Solving Skills',
+        'Communication Skills',
+        'Project Development',
+      ],
+      officialLink: {
+        text: 'Learn More About C-DAC PGCP-AC →',
+        url: 'https://www.cdac.in/index.aspx?id=edu_acts_PGDiplomaCoursesAdmission',
+      },
+    },
   },
   {
     id: 'be-cse',

@@ -23,6 +23,32 @@ export interface SectionProps {
   className?: string;
 }
 
+export interface CurriculumModule {
+  title: string;
+  hours: string;
+}
+
+export interface PGCPDetails {
+  programme: string;
+  institution: string;
+  completedYear: string;
+  programType: string;
+  statistics: {
+    duration: string;
+    format: string;
+    totalHours: string;
+    credits: string;
+    selfStudy: string;
+  };
+  description: string;
+  coreCurriculum: CurriculumModule[];
+  skillsDeveloped: string[];
+  officialLink: {
+    text: string;
+    url: string;
+  };
+}
+
 export interface EducationItem {
   id: string;
   degree: string;
@@ -39,6 +65,8 @@ export interface EducationItem {
   selfStudyHours?: string;
   isFeatured?: boolean;
   featuredBadge?: string;
+  details?: PGCPDetails;
 }
+
 
 
