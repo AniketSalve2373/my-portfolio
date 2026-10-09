@@ -67,6 +67,55 @@ export interface EducationItem {
   featuredBadge?: string;
   details?: PGCPDetails;
 }
+export interface WorkExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  location: string;
+  duration: string;
+  technologies: string[];
+  responsibilities: string[];
+}
 
+export interface DevSecOpsDetails {
+  organization: string;
+  collaboration: string;
+  course: string;
+  duration: string;
+  trainingDuration: string;
+  mode: string;
+  performance: string;
+  grade: string;
+  certificateNo: string;
+  rollNo: string;
+  dateOfIssue: string;
+  issuingBodies: string;
+  description: string;
+  keyLearnings: string[];
+}
 
+export interface GenerationIndiaDetails {
+  program: string;
+  issuer: string;
+  recipient: string;
+  duration: string;
+  trainingPartner: string;
+  centre: string;
+  batchId: string;
+  issueDate: string;
+  signatory: string;
+  technicalSkills: string[];
+  behavioralSkills: string[];
+}
 
+export interface TrainingItem {
+  id: string;
+  roleOrProgram: string;
+  organization: string;
+  collaborationOrPartner?: string;
+  duration: string;
+  isTraining: true;
+  type: 'devsecops' | 'generation-india';
+  devSecOpsDetails?: DevSecOpsDetails;
+  generationIndiaDetails?: GenerationIndiaDetails;
+}
