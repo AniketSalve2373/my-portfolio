@@ -119,3 +119,23 @@ export interface TrainingItem {
   devSecOpsDetails?: DevSecOpsDetails;
   generationIndiaDetails?: GenerationIndiaDetails;
 }
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  shortDescription: string;
+  detailedDescription?: string;
+  technologies: string[];
+  architecture?: string;
+  projectType?: string;
+  duration?: string;
+  githubUrl?: string;
+  liveUrl?: string; // Optional real live URL ONLY - never fake
+  featured?: boolean;
+  badge?: string;
+  category?: string;
+  keyFeatures?: string[];
+  highlights?: string[];
+  role?: string;
+}
+

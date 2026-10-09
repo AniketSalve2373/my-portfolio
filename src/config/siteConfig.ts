@@ -219,3 +219,6 @@ export const professionalTrainingData: TrainingItem[] = [
 
 
 
+
+
+export { projectsData } from './projectsData';
