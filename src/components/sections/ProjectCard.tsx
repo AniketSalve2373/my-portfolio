@@ -120,7 +120,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
 
         {/* Right: GitHub & Live Demo (ONLY IF REAL LIVE URL EXISTS) */}
         <div className="flex items-center gap-2">
-          {project.githubUrl && (
+          {project.githubUrl && project.githubUrl.trim().length > 0 ? (
             <a
               href={project.githubUrl}
               target="_blank"
@@ -131,6 +131,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
               <GithubIcon className="w-3.5 h-3.5" />
               <span>GitHub</span>
             </a>
+          ) : (
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-slate-400 dark:text-slate-500 bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-800 cursor-not-allowed"
+              title="GitHub repository link coming soon"
+            >
+              <GithubIcon className="w-3.5 h-3.5 opacity-50" />
+              <span className="hidden sm:inline">GitHub link coming soon</span>
+              <span className="sm:hidden">Coming soon</span>
+            </span>
           )}
 
           {/* Real Live Demo link ONLY - strict check to prevent fake URLs */}
