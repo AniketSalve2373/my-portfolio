@@ -139,3 +139,21 @@ export interface ProjectItem {
   role?: string;
 }
 
+export interface SkillCategoryData {
+  id: string;
+  title: string;
+  subtitle?: string;
+  iconName: string;
+  skills: string[];
+  themeColor: 'blue' | 'cyan' | 'emerald' | 'amber' | 'indigo' | 'purple' | 'slate';
+}
+
+export interface PrimaryStackItem {
+  id: string;
+  name: string;
+  role: string;
+  category: string;
+  description: string;
+  iconName: string;
+  tag: string;
+}

@@ -222,3 +222,9 @@ export const professionalTrainingData: TrainingItem[] = [
 
 
 export { projectsData } from './projectsData';
+export {
+  primaryStackData,
+  skillCategoriesData,
+  isPrimaryStackSkill,
+  PRIMARY_STACK_NAMES,
+} from './skillsData';
