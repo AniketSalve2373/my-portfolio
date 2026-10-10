@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import {
   Mail,
-  Phone,
-  Send,
   Copy,
   Check,
   ExternalLink,
-  MessageSquare,
   Sparkles,
   MapPin,
   Clock,
-  AlertCircle,
-  CheckCircle2,
-  Info,
 } from 'lucide-react';
 import { Container } from '../common/Container';
 import { SectionHeader } from '../common/SectionHeader';
 import { Card } from '../common/Card';
-import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 import { contactData } from '../../config/siteConfig';
-import type { SectionProps, ContactFormData } from '../../types';
+import type { SectionProps } from '../../types';
 
 // Brand SVG for LinkedIn
 const LinkedinIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
@@ -41,119 +34,15 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' })
 );
 
 export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', className = '' }) => {
-  // Form input state
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
-  // Validation error state
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
-  const [isMailtoTriggered, setIsMailtoTriggered] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
-  const [copiedDraft, setCopiedDraft] = useState(false);
 
-  // Field validation helper
-  const validateField = (field: keyof ContactFormData, value: string): string => {
-    switch (field) {
-      case 'name':
-        if (!value.trim()) return 'Name is required.';
-        if (value.trim().length < 2) return 'Name must be at least 2 characters.';
-        return '';
-      case 'email':
-        if (!value.trim()) return 'Email is required.';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
-          return 'Please enter a valid email address.';
-        }
-        return '';
-      case 'subject':
-        if (!value.trim()) return 'Subject is required.';
-        if (value.trim().length < 3) return 'Subject must be at least 3 characters.';
-        return '';
-      case 'message':
-        if (!value.trim()) return 'Message is required.';
-        if (value.trim().length < 10) return 'Message must be at least 10 characters.';
-        return '';
-      default:
-        return '';
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for field upon typing if error existed
-    if (errors[name as keyof ContactFormData]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-    if (isMailtoTriggered) {
-      setIsMailtoTriggered(false);
-    }
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    const error = validateField(name as keyof ContactFormData, value);
-    if (error) {
-      setErrors((prev) => ({ ...prev, [name]: error }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate all fields
-    const newErrors: Partial<Record<keyof ContactFormData, string>> = {};
-    let hasError = false;
-
-    (Object.keys(formData) as Array<keyof ContactFormData>).forEach((field) => {
-      const err = validateField(field, formData[field]);
-      if (err) {
-        newErrors[field] = err;
-        hasError = true;
-      }
-    });
-
-    if (hasError) {
-      setErrors(newErrors);
-      // Focus first error field
-      const firstInvalidField = Object.keys(newErrors)[0];
-      const element = document.getElementById(`contact-${firstInvalidField}`);
-      element?.focus();
-      return;
-    }
-
-    setErrors({});
-
-    // Build graceful mailto fallback link with pre-filled subject and body
-    const emailBody = `Hi Aniket,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`;
-    const mailtoUrl = `mailto:${contactData.email}?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(emailBody)}`;
-
-    // Trigger user's default email client
-    window.location.href = mailtoUrl;
-    setIsMailtoTriggered(true);
-  };
-
-  const handleCopy = async (text: string, type: 'email' | 'phone' | 'draft') => {
+  const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(text);
-      if (type === 'email') {
-        setCopiedEmail(true);
-        setTimeout(() => setCopiedEmail(false), 2000);
-      } else if (type === 'phone') {
-        setCopiedPhone(true);
-        setTimeout(() => setCopiedPhone(false), 2000);
-      } else if (type === 'draft') {
-        setCopiedDraft(true);
-        setTimeout(() => setCopiedDraft(false), 2000);
-      }
+      await navigator.clipboard.writeText(contactData.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
     } catch {
-      // Fallback
+      // Fallback if clipboard API is unavailable
     }
   };
 
@@ -169,401 +58,167 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
           subtitle="Feel free to connect for software engineering opportunities, enterprise Java development roles, or technical project collaborations."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Contact Cards & Direct Information (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
-            {/* Candidate Identity Snippet */}
-            <Card padding="lg" className="reveal-card border-l-4 border-l-blue-600 dark:border-l-blue-500">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                    {contactData.name}
-                  </h3>
-                  <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 font-mono mt-0.5">
-                    {contactData.title}
-                  </p>
-                </div>
-                <Badge variant="emerald" className="text-[10px] py-0.5 shrink-0">
-                  <Sparkles className="w-3 h-3 mr-1" />
-                  Available
-                </Badge>
+        <div className="max-w-4xl mx-auto flex flex-col gap-6">
+          {/* Candidate Profile / Identity Card */}
+          <Card padding="lg" className="reveal-card border-l-4 border-l-blue-600 dark:border-l-blue-500 bg-white dark:bg-slate-900 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+                  {contactData.name}
+                </h3>
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 font-mono mt-0.5">
+                  {contactData.title}
+                </p>
               </div>
+              <Badge variant="emerald" className="text-xs py-1 px-3 shrink-0 self-start sm:self-center">
+                <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                Available for Roles
+              </Badge>
+            </div>
 
-              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2 text-xs text-slate-600 dark:text-slate-400">
+            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-600 dark:text-slate-400">
+              {contactData.location && (
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                  <MapPin className="w-4 h-4 text-blue-500 shrink-0" />
                   <span>{contactData.location}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-400 shrink-0" />
-                  <span>Open to Full-Time & Immediate Joining Roles</span>
-                </div>
+              )}
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Open to Full-Time & Immediate Joining Roles</span>
               </div>
-            </Card>
+            </div>
+          </Card>
 
-            {/* Email Contact Card */}
-            <Card padding="md" className="reveal-card flex items-center justify-between gap-4 group hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+          {/* Static Contact Cards: Email, LinkedIn, GitHub */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Email Card */}
+            <Card padding="md" className="reveal-card flex flex-col justify-between gap-4 group hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-200 bg-white dark:bg-slate-900">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Mail className="w-5 h-5" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500 block">
                     Email
                   </span>
                   <a
                     href={`mailto:${contactData.email}`}
-                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded"
+                    className="text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
                   >
                     {contactData.email}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
                 <button
                   type="button"
-                  onClick={() => handleCopy(contactData.email, 'email')}
-                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  title="Copy email to clipboard"
+                  onClick={handleCopyEmail}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  title="Copy email address"
                   aria-label="Copy email address to clipboard"
                 >
-                  {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                  {copiedEmail ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      <span className="text-emerald-600 dark:text-emerald-400 font-medium">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy Email</span>
+                    </>
+                  )}
                 </button>
+
                 <a
                   href={`mailto:${contactData.email}`}
-                  className="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                  title="Open mail client"
-                  aria-label="Open default mail client"
+                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  aria-label="Send email via mailto link"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <span>Send Mail</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </Card>
 
-            {/* Phone Contact Card */}
-            <Card padding="md" className="reveal-card flex items-center justify-between gap-4 group hover:border-teal-400 dark:hover:border-teal-600 transition-colors">
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-11 h-11 rounded-xl bg-teal-50 dark:bg-teal-950/70 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5" />
+            {/* LinkedIn Card */}
+            <Card padding="md" className="reveal-card flex flex-col justify-between gap-4 group hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-200 bg-white dark:bg-slate-900">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <LinkedinIcon className="w-5 h-5" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500 block">
-                    Phone
+                    LinkedIn
                   </span>
                   <a
-                    href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
-                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-teal-600 dark:hover:text-teal-400 font-mono truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none rounded"
+                    href={contactData.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                    aria-label="Aniket Salve LinkedIn profile (opens in new tab)"
                   >
-                    {contactData.phone}
+                    Connect on LinkedIn
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => handleCopy(contactData.phone, 'phone')}
-                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none"
-                  title="Copy phone to clipboard"
-                  aria-label="Copy phone number to clipboard"
-                >
-                  {copiedPhone ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-                </button>
+              <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
+                <span className="text-slate-400 dark:text-slate-500 font-mono text-[11px] truncate max-w-[140px]">
+                  linkedin.com/in/aniket-salve...
+                </span>
                 <a
-                  href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
-                  className="p-2 text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-950/50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none"
-                  title="Call phone number"
-                  aria-label="Call phone number"
+                  href={contactData.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  aria-label="Open LinkedIn profile in a new tab"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <span>Visit Profile</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </Card>
 
-            {/* Social Links Cards: LinkedIn & GitHub */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {/* LinkedIn */}
-              <a
-                href={contactData.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xs transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                aria-label="Aniket Salve LinkedIn profile (opens in new tab)"
-              >
-                <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <LinkedinIcon className="w-5 h-5" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-slate-400 block">
-                    LinkedIn
-                  </span>
-                  <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate block">
-                    Connect on LinkedIn
-                  </span>
-                </div>
-                <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 shrink-0" />
-              </a>
-
-              {/* GitHub */}
-              <a
-                href={contactData.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-xs transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-                aria-label="Aniket Salve GitHub profile (opens in new tab)"
-              >
-                <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+            {/* GitHub Card */}
+            <Card padding="md" className="reveal-card flex flex-col justify-between gap-4 group hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200 bg-white dark:bg-slate-900">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <GithubIcon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-slate-400 block">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider font-mono text-slate-400 dark:text-slate-500 block">
                     GitHub
                   </span>
-                  <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-950 dark:group-hover:text-white truncate block">
+                  <a
+                    href={contactData.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                    aria-label="Aniket Salve GitHub profile (opens in new tab)"
+                  >
                     Explore Repositories
-                  </span>
+                  </a>
                 </div>
-                <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 shrink-0" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Contact Form with Frontend Validation & Mailto Fallback (7 Cols) */}
-          <div className="lg:col-span-7">
-            <Card padding="lg" className="reveal-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-              <div className="mb-6 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">
-                      Send a Message
-                    </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Fill out the details below to initiate an email conversation.
-                    </p>
-                  </div>
-                </div>
-
-                <span className="text-[11px] font-mono text-slate-400 hidden sm:inline-block">
-                  Direct Mailto Delivery
-                </span>
               </div>
 
-              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
-                {/* Row 1: Name and Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Name field */}
-                  <div>
-                    <label
-                      htmlFor="contact-name"
-                      className="block text-xs font-semibold uppercase tracking-wider font-mono text-slate-700 dark:text-slate-300 mb-1.5"
-                    >
-                      Name <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      id="contact-name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Your Full Name"
-                      aria-required="true"
-                      aria-invalid={Boolean(errors.name)}
-                      aria-describedby={errors.name ? 'contact-name-error' : undefined}
-                      className={`w-full px-4 py-2.5 rounded-lg border text-sm transition-all focus:outline-none focus:ring-2 ${
-                        errors.name
-                          ? 'border-rose-400 dark:border-rose-600 bg-rose-50/30 dark:bg-rose-950/20 text-slate-900 dark:text-slate-100 focus:ring-rose-400'
-                          : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:ring-blue-500 focus:border-blue-500'
-                      }`}
-                    />
-                    {errors.name && (
-                      <p
-                        id="contact-name-error"
-                        className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium"
-                      >
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.name}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Email field */}
-                  <div>
-                    <label
-                      htmlFor="contact-email"
-                      className="block text-xs font-semibold uppercase tracking-wider font-mono text-slate-700 dark:text-slate-300 mb-1.5"
-                    >
-                      Email <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="your.email@example.com"
-                      aria-required="true"
-                      aria-invalid={Boolean(errors.email)}
-                      aria-describedby={errors.email ? 'contact-email-error' : undefined}
-                      className={`w-full px-4 py-2.5 rounded-lg border text-sm transition-all focus:outline-none focus:ring-2 ${
-                        errors.email
-                          ? 'border-rose-400 dark:border-rose-600 bg-rose-50/30 dark:bg-rose-950/20 text-slate-900 dark:text-slate-100 focus:ring-rose-400'
-                          : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:ring-blue-500 focus:border-blue-500'
-                      }`}
-                    />
-                    {errors.email && (
-                      <p
-                        id="contact-email-error"
-                        className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium"
-                      >
-                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Subject field */}
-                <div>
-                  <label
-                    htmlFor="contact-subject"
-                    className="block text-xs font-semibold uppercase tracking-wider font-mono text-slate-700 dark:text-slate-300 mb-1.5"
-                  >
-                    Subject <span className="text-rose-500">*</span>
-                  </label>
-                  <input
-                    id="contact-subject"
-                    name="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Role Opportunity / Project Discussion"
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.subject)}
-                    aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
-                    className={`w-full px-4 py-2.5 rounded-lg border text-sm transition-all focus:outline-none focus:ring-2 ${
-                      errors.subject
-                        ? 'border-rose-400 dark:border-rose-600 bg-rose-50/30 dark:bg-rose-950/20 text-slate-900 dark:text-slate-100 focus:ring-rose-400'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:ring-blue-500 focus:border-blue-500'
-                    }`}
-                  />
-                  {errors.subject && (
-                    <p
-                      id="contact-subject-error"
-                      className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium"
-                    >
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      {errors.subject}
-                    </p>
-                  )}
-                </div>
-
-                {/* Message field */}
-                <div>
-                  <label
-                    htmlFor="contact-message"
-                    className="block text-xs font-semibold uppercase tracking-wider font-mono text-slate-700 dark:text-slate-300 mb-1.5"
-                  >
-                    Message <span className="text-rose-500">*</span>
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Hello Aniket, I came across your portfolio and would like to discuss..."
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.message)}
-                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
-                    className={`w-full px-4 py-2.5 rounded-lg border text-sm transition-all focus:outline-none focus:ring-2 resize-y min-h-[110px] ${
-                      errors.message
-                        ? 'border-rose-400 dark:border-rose-600 bg-rose-50/30 dark:bg-rose-950/20 text-slate-900 dark:text-slate-100 focus:ring-rose-400'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:ring-blue-500 focus:border-blue-500'
-                    }`}
-                  />
-                  {errors.message && (
-                    <p
-                      id="contact-message-error"
-                      className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium"
-                    >
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Submit Button & Integration Notice */}
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    icon={<Send className="w-4 h-4" />}
-                    iconPosition="right"
-                    className="shadow-md hover:shadow-lg transition-all"
-                  >
-                    Send Message
-                  </Button>
-
-                  <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                    <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                    <span>Launches email client with pre-filled details</span>
-                  </span>
-                </div>
-
-                {/* Honest & Transparent Delivery Feedback */}
-                {isMailtoTriggered && (
-                  <div className="mt-2 p-4 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/80 text-xs text-slate-700 dark:text-slate-300 flex flex-col gap-2.5 animate-in fade-in duration-200">
-                    <div className="flex items-start gap-2 text-blue-800 dark:text-blue-300 font-semibold">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-                      <span>Email Client Prompted</span>
-                    </div>
-                    <p className="leading-relaxed text-slate-600 dark:text-slate-300">
-                      Your default mail application has been triggered with your pre-filled message addressed to{' '}
-                      <code className="font-mono font-semibold text-blue-700 dark:text-blue-300">
-                        {contactData.email}
-                      </code>
-                      . Please click <strong>Send</strong> in your mail application to finish transmitting your message.
-                    </p>
-                    <div className="flex flex-wrap items-center gap-2 pt-1">
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="outline"
-                        icon={copiedDraft ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-                        onClick={() =>
-                          handleCopy(
-                            `Subject: ${formData.subject}\n\nHi Aniket,\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
-                            'draft'
-                          )
-                        }
-                      >
-                        {copiedDraft ? 'Message Text Copied!' : 'Copy Form Content'}
-                      </Button>
-                      <Button
-                        href={`mailto:${contactData.email}?subject=${encodeURIComponent(
-                          formData.subject
-                        )}&body=${encodeURIComponent(
-                          `Hi Aniket,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`
-                        )}`}
-                        size="sm"
-                        variant="ghost"
-                        icon={<ExternalLink className="w-3.5 h-3.5" />}
-                      >
-                        Re-open Mail Client
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </form>
+              <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
+                <span className="text-slate-400 dark:text-slate-500 font-mono text-[11px] truncate max-w-[140px]">
+                  github.com/AniketSalve2373...
+                </span>
+                <a
+                  href={contactData.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                  aria-label="Open GitHub profile in a new tab"
+                >
+                  <span>Visit Profile</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </Card>
           </div>
         </div>

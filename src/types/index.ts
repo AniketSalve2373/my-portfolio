@@ -13,7 +13,7 @@ export interface SiteConfig {
   title: string;
   role: string;
   email: string;
-  phone: string;
+  phone?: string;
   bioPlaceholder: string;
   introduction: string;
   socialLinks: SocialLinks;
@@ -24,7 +24,7 @@ export interface ContactDetails {
   name: string;
   title: string;
   email: string;
-  phone: string;
+  phone?: string;
   location?: string;
   linkedin: string;
   github: string;
