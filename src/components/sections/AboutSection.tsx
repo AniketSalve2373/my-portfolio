@@ -26,7 +26,7 @@ export const AboutSection: React.FC<SectionProps> = ({ id = 'about', className =
 
         {/* Featured Introduction Card */}
         <div className="mb-12">
-          <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 md:p-10 shadow-xs transition-all duration-300 hover:shadow-md">
+          <div className="reveal-card relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 md:p-10 shadow-xs transition-all duration-300 hover:shadow-md">
             {/* Top Accent Gradient Line */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600" />
             
@@ -63,7 +63,7 @@ export const AboutSection: React.FC<SectionProps> = ({ id = 'about', className =
 
         {/* 3 Pillars / Core Focus Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <Card hoverEffect padding="lg" className="flex flex-col gap-4">
+          <Card hoverEffect padding="lg" className="reveal-card flex flex-col gap-4">
             <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-200/60 dark:border-blue-900/50">
               <Server className="w-6 h-6" />
             </div>
@@ -75,7 +75,7 @@ export const AboutSection: React.FC<SectionProps> = ({ id = 'about', className =
             </div>
           </Card>
 
-          <Card hoverEffect padding="lg" className="flex flex-col gap-4">
+          <Card hoverEffect padding="lg" className="reveal-card flex flex-col gap-4">
             <div className="w-12 h-12 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-200/60 dark:border-teal-900/50">
               <Code className="w-6 h-6" />
             </div>
@@ -87,7 +87,7 @@ export const AboutSection: React.FC<SectionProps> = ({ id = 'about', className =
             </div>
           </Card>
 
-          <Card hoverEffect padding="lg" className="flex flex-col gap-4">
+          <Card hoverEffect padding="lg" className="reveal-card flex flex-col gap-4">
             <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center border border-indigo-200/60 dark:border-indigo-900/50">
               <Brain className="w-6 h-6" />
             </div>

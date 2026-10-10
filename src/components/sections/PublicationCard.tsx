@@ -38,7 +38,7 @@ export const PublicationCard: React.FC<PublicationCardProps> = ({ publication })
     <Card
       hoverEffect
       padding="lg"
-      className="relative overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-sm hover:shadow-lg transition-all duration-300"
+      className="reveal-card relative overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300"
     >
       {/* Ambient background decoration */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />

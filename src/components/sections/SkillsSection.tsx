@@ -208,7 +208,7 @@ export const SkillsSection: React.FC<SectionProps> = ({ id = 'skills', className
               {primaryStackData.map((tech) => (
                 <div
                   key={tech.id}
-                  className="group relative p-5 rounded-xl bg-white/90 dark:bg-slate-900/80 border border-slate-200/90 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between"
+                  className="reveal-card group relative p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -325,7 +325,7 @@ export const SkillsSection: React.FC<SectionProps> = ({ id = 'skills', className
                   key={category.id}
                   hoverEffect
                   padding="lg"
-                  className="flex flex-col justify-between group"
+                  className="reveal-card flex flex-col justify-between group"
                 >
                   <div>
                     {/* Category Header */}

@@ -173,7 +173,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
           {/* Left Column: Contact Cards & Direct Information (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col gap-5">
             {/* Candidate Identity Snippet */}
-            <Card padding="lg" className="border-l-4 border-l-blue-600 dark:border-l-blue-500">
+            <Card padding="lg" className="reveal-card border-l-4 border-l-blue-600 dark:border-l-blue-500">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
@@ -202,7 +202,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
             </Card>
 
             {/* Email Contact Card */}
-            <Card padding="md" className="flex items-center justify-between gap-4 group hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
+            <Card padding="md" className="reveal-card flex items-center justify-between gap-4 group hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
               <div className="flex items-center gap-3.5 min-w-0">
                 <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5" />
@@ -242,7 +242,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
             </Card>
 
             {/* Phone Contact Card */}
-            <Card padding="md" className="flex items-center justify-between gap-4 group hover:border-teal-400 dark:hover:border-teal-600 transition-colors">
+            <Card padding="md" className="reveal-card flex items-center justify-between gap-4 group hover:border-teal-400 dark:hover:border-teal-600 transition-colors">
               <div className="flex items-center gap-3.5 min-w-0">
                 <div className="w-11 h-11 rounded-xl bg-teal-50 dark:bg-teal-950/70 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5" />
@@ -331,7 +331,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
 
           {/* Right Column: Contact Form with Frontend Validation & Mailto Fallback (7 Cols) */}
           <div className="lg:col-span-7">
-            <Card padding="lg" className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95 shadow-sm">
+            <Card padding="lg" className="reveal-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
               <div className="mb-6 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
                 <div className="flex items-center gap-2.5">
                   <div className="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">

@@ -12,7 +12,11 @@ import { ResumeSection } from '../sections/ResumeSection';
 import { PublicationSection } from '../sections/PublicationSection';
 import { ContactSection } from '../sections/ContactSection';
 
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+
 export const Layout: React.FC = () => {
+  useScrollReveal();
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* Skip to main content link for keyboard accessibility */}
@@ -27,15 +31,15 @@ export const Layout: React.FC = () => {
 
       <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>
         <HeroSection />
-        <AboutSection id="about" />
-        <EducationSection id="education" />
-        <ExperienceSection id="experience" />
-        <ProjectsSection id="projects" />
-        <SkillsSection id="skills" />
-        <CertificationsSection id="certifications" />
-        <ResumeSection id="resume" />
-        <PublicationSection id="publication" />
-        <ContactSection id="contact" />
+        <AboutSection id="about" className="reveal-on-scroll" />
+        <EducationSection id="education" className="reveal-on-scroll" />
+        <ExperienceSection id="experience" className="reveal-on-scroll" />
+        <ProjectsSection id="projects" className="reveal-on-scroll" />
+        <SkillsSection id="skills" className="reveal-on-scroll" />
+        <CertificationsSection id="certifications" className="reveal-on-scroll" />
+        <ResumeSection id="resume" className="reveal-on-scroll" />
+        <PublicationSection id="publication" className="reveal-on-scroll" />
+        <ContactSection id="contact" className="reveal-on-scroll" />
       </main>
 
       <Footer />

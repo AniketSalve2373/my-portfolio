@@ -22,12 +22,12 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const hoverStyle = hoverEffect
-    ? 'transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md'
-    : '';
+    ? 'transition-all duration-300 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md hover:-translate-y-1'
+    : 'transition-colors duration-200';
 
   return (
     <div
-      className={`bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/80 rounded-xl shadow-xs ${paddingStyles[padding]} ${hoverStyle} ${className}`}
+      className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xs ${paddingStyles[padding]} ${hoverStyle} ${className}`}
       {...props}
     >
       {children}

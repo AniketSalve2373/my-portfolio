@@ -97,7 +97,7 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
         ref={modalRef}
         onKeyDown={handleKeyDownModal}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl max-h-[92vh] sm:max-h-[90vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-200 scale-100"
+        className="relative w-full max-w-4xl max-h-[92vh] sm:max-h-[90vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-200 animate-modal-content"
       >
         {/* Modal Pinned Header */}
         <div className="shrink-0 p-5 sm:p-6 bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 text-white border-b border-blue-800/50 flex items-start justify-between gap-4">

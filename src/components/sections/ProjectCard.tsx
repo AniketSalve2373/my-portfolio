@@ -37,7 +37,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
   return (
     <Card
       padding="lg"
-      className="group relative flex flex-col justify-between h-full bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800/80 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-400/60 dark:hover:border-blue-500/50"
+      className="reveal-card group relative flex flex-col justify-between h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-400/60 dark:hover:border-blue-500/50"
     >
       <div>
         {/* Card Header: Icon & Badges */}

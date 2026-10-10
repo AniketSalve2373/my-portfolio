@@ -75,7 +75,7 @@ export const ExperienceSection: React.FC<SectionProps> = ({ id = 'experience', c
                   {/* Timeline Node Icon */}
                   <div className="absolute -left-[25px] sm:-left-[33px] md:-left-[41px] top-6 w-5 h-5 rounded-full bg-blue-600 dark:bg-blue-500 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 transition-transform duration-200 shadow-xs" />
 
-                  <Card padding="lg" hoverEffect className="relative overflow-hidden border-slate-200 dark:border-slate-800/90 shadow-xs">
+                  <Card padding="lg" hoverEffect className="reveal-card relative overflow-hidden border-slate-200 dark:border-slate-800 shadow-xs">
                     {/* Top Role & Company Header */}
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-100 dark:border-slate-800/60">
                       <div className="space-y-1">
@@ -168,7 +168,7 @@ export const ExperienceSection: React.FC<SectionProps> = ({ id = 'experience', c
                     key={training.id}
                     padding="lg"
                     hoverEffect
-                    className="relative overflow-hidden border-slate-200 dark:border-slate-800/90 shadow-xs transition-all duration-300"
+                    className="reveal-card relative overflow-hidden border-slate-200 dark:border-slate-800 shadow-xs transition-all duration-300"
                   >
                     {/* Top Training Non-Employment Banner */}
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-4">

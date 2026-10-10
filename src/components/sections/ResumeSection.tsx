@@ -39,7 +39,7 @@ export const ResumeSection: React.FC<SectionProps> = ({ id = 'resume', className
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Details & Actions (Left 7 Cols) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
-            <Card padding="lg" className="flex flex-col gap-6 relative overflow-hidden">
+            <Card padding="lg" className="reveal-card flex flex-col gap-6 relative overflow-hidden">
               {/* Subtle accent glow */}
               <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -151,7 +151,7 @@ export const ResumeSection: React.FC<SectionProps> = ({ id = 'resume', className
           <div className="lg:col-span-5 flex flex-col gap-4">
             <Card
               padding="none"
-              className="group relative overflow-hidden border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
+              className="reveal-card group relative overflow-hidden border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
               onClick={() => setIsViewerOpen(true)}
               role="button"
               tabIndex={0}

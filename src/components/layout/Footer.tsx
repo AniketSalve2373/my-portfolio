@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+                className="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/70 font-medium transition-all duration-150"
               >
                 {link.label}
               </a>
@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
               href={siteConfig.socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer shadow-2xs hover:shadow-xs"
               aria-label="LinkedIn profile (opens in new tab)"
             >
               <LinkedinIcon className="w-4 h-4" />
@@ -93,7 +93,7 @@ export const Footer: React.FC = () => {
               href={siteConfig.socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer shadow-2xs hover:shadow-xs"
               aria-label="GitHub profile (opens in new tab)"
             >
               <GithubIcon className="w-4 h-4" />
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
           <button
             onClick={scrollToTop}
             type="button"
-            className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-0.5 active:translate-y-0 transition-all px-3 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 cursor-pointer"
             aria-label="Scroll back to top of the page"
           >
             <span>Back to top</span>

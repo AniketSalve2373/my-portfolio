@@ -5,7 +5,9 @@ import { Container } from '../common/Container';
 import { ThemeToggle } from '../common/ThemeToggle';
 
 export const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(() =>
+    typeof window !== 'undefined' ? window.scrollY > 20 : false
+  );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -31,8 +33,11 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check on mount
-    return () => window.removeEventListener('scroll', handleScroll);
+    const rafId = requestAnimationFrame(handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, [handleScroll]);
 
   // Close mobile menu on Escape key press
@@ -118,12 +123,12 @@ export const Header: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="xl:hidden p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-colors"
+              className="xl:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -133,7 +138,7 @@ export const Header: React.FC = () => {
           <>
             {/* Backdrop */}
             <div
-              className="fixed inset-0 top-[65px] bg-slate-900/30 dark:bg-black/50 backdrop-blur-xs xl:hidden z-40"
+              className="fixed inset-0 top-[65px] bg-slate-900/40 dark:bg-black/60 backdrop-blur-xs xl:hidden z-40 transition-opacity"
               onClick={() => setMobileMenuOpen(false)}
               aria-hidden="true"
             />
@@ -166,6 +171,12 @@ export const Header: React.FC = () => {
                   </a>
                 );
               })}
+
+              {/* Dedicated Mobile Theme Switcher Row */}
+              <div className="pt-2.5 mt-1.5 border-t border-slate-100 dark:border-slate-800 px-3 flex items-center justify-between">
+                <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Theme Preference</span>
+                <ThemeToggle showLabel className="py-1 px-3 text-xs" />
+              </div>
             </nav>
           </>
         )}

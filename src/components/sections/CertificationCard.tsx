@@ -87,7 +87,7 @@ export const CertificationCard: React.FC<CertificationCardProps> = ({ certificat
 
   return (
     <div
-      className={`group relative h-full flex flex-col justify-between bg-white dark:bg-slate-900/95 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-950/70 transition-all duration-300 ease-out hover:-translate-y-1.5 ${brandTheme.accentBorder}`}
+      className={`reveal-card group relative h-full flex flex-col justify-between bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-xs hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-950/70 transition-all duration-300 ease-out hover:-translate-y-1.5 ${brandTheme.accentBorder}`}
     >
       {/* Top subtle ambient glow on hover */}
       <div

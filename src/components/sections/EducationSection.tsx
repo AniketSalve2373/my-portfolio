@@ -57,7 +57,7 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
         <div className="space-y-8">
           {/* ENTRY 1: PGCP-AC (C-DAC) - FEATURED SPECIAL TREATMENT */}
           {pgcp && (
-            <div className="relative group">
+            <div className="reveal-card relative group">
               {/* Outer Decorative Gradient Border & Glow */}
               <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600 opacity-30 group-hover:opacity-60 blur-xs transition duration-300 pointer-events-none" />
 
@@ -158,7 +158,7 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
 
           {/* ENTRY 2: B.E. - COMPUTER SCIENCE AND ENGINEERING */}
           {be && (
-            <Card hoverEffect padding="lg" className="relative border-slate-200 dark:border-slate-800">
+            <Card hoverEffect padding="lg" className="reveal-card relative border-slate-200 dark:border-slate-800">
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 border border-blue-200/60 dark:border-blue-900/50">
@@ -202,7 +202,7 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* ENTRY 3: HSC */}
             {hsc && (
-              <Card hoverEffect padding="lg" className="border-slate-200 dark:border-slate-800">
+              <Card hoverEffect padding="lg" className="reveal-card border-slate-200 dark:border-slate-800">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 border border-amber-200/60 dark:border-amber-900/50">
                     <BookOpen className="w-5 h-5" />
@@ -231,7 +231,7 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
 
             {/* ENTRY 4: SSC */}
             {ssc && (
-              <Card hoverEffect padding="lg" className="border-slate-200 dark:border-slate-800">
+              <Card hoverEffect padding="lg" className="reveal-card border-slate-200 dark:border-slate-800">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-200/60 dark:border-indigo-900/50">
                     <School className="w-5 h-5" />
