@@ -12,10 +12,29 @@ export interface SiteConfig {
   name: string;
   title: string;
   role: string;
+  email: string;
+  phone: string;
   bioPlaceholder: string;
   introduction: string;
   socialLinks: SocialLinks;
   navItems: NavItem[];
+}
+
+export interface ContactDetails {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
+  location?: string;
+  linkedin: string;
+  github: string;
+}
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
 }
 
 export interface SectionProps {

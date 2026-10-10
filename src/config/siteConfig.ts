@@ -1,9 +1,11 @@
-import type { SiteConfig, EducationItem, WorkExperienceItem, TrainingItem } from '../types';
+import type { SiteConfig, EducationItem, WorkExperienceItem, TrainingItem, ContactDetails } from '../types';
 
 export const siteConfig: SiteConfig = {
   name: 'Aniket Madhukar Salve',
   title: 'Software Developer | Java Full Stack Developer',
   role: 'Software Developer | Java Full Stack Developer',
+  email: 'aniketsalve237@gmail.com',
+  phone: '+91 9359642291',
   bioPlaceholder:
     'Passionate about building scalable backend services, full stack web applications, and reliable software architectures.',
   introduction:
@@ -228,6 +230,16 @@ export {
   isPrimaryStackSkill,
   PRIMARY_STACK_NAMES,
 } from './skillsData';
+export const contactData: ContactDetails = {
+  name: 'Aniket Madhukar Salve',
+  title: 'Software Developer | Java Full Stack Developer',
+  email: 'aniketsalve237@gmail.com',
+  phone: '+91 9359642291',
+  location: 'Pune, Maharashtra, India',
+  linkedin: 'https://www.linkedin.com/in/aniket-salve-b31a59288/',
+  github: 'https://github.com/AniketSalve2373/',
+};
+
 export { certificationsData } from './certificationsData';
 export { resumeData } from './resumeData';
 export { publicationData } from './publicationData';
