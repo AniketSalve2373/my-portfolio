@@ -18,31 +18,42 @@ export const ProjectsSection: React.FC<SectionProps> = ({ id = 'projects', class
     set.add('All');
     projectsData.forEach((p) => {
       if (p.category) {
-        // Normalize categories for clean tabs
-        if (p.category.includes('Full Stack') || p.category.includes('AI')) set.add('Full Stack & AI');
-        else if (p.category.includes('.NET')) set.add('.NET Enterprise');
-        else if (p.category.includes('Frontend')) set.add('Frontend');
-        else set.add(p.category);
+        set.add(p.category.trim());
       }
     });
     return Array.from(set);
   }, []);
 
-  // Filtered projects
+  // Filtered projects derived immutably from projectsData
   const filteredProjects = useMemo(() => {
     if (selectedCategory === 'All') return projectsData;
+
+    const selectedNorm = selectedCategory.trim().toLowerCase();
+    if (selectedNorm === 'all') return projectsData;
+
     return projectsData.filter((p) => {
       if (!p.category) return false;
-      if (selectedCategory === 'Full Stack & AI') {
-        return p.category.includes('Full Stack') || p.category.includes('AI');
+      const projCatNorm = p.category.trim().toLowerCase();
+
+      // Flexible matching for .NET variations (.NET, .NET Enterprise, dotnet)
+      if (selectedNorm === '.net' || selectedNorm.includes('.net') || selectedNorm.includes('dotnet')) {
+        return projCatNorm.includes('.net') || projCatNorm.includes('dotnet');
       }
-      if (selectedCategory === '.NET Enterprise') {
-        return p.category.includes('.NET');
+
+      // Flexible matching for Full Stack & AI variations
+      if (
+        selectedNorm.includes('full stack') ||
+        selectedNorm.includes('fullstack') ||
+        selectedNorm.includes('ai')
+      ) {
+        return (
+          projCatNorm.includes('full stack') ||
+          projCatNorm.includes('fullstack') ||
+          projCatNorm.includes('ai')
+        );
       }
-      if (selectedCategory === 'Frontend') {
-        return p.category.includes('Frontend');
-      }
-      return p.category === selectedCategory;
+
+      return projCatNorm === selectedNorm;
     });
   }, [selectedCategory]);
 
@@ -67,9 +78,12 @@ export const ProjectsSection: React.FC<SectionProps> = ({ id = 'projects', class
 
         {/* Category Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 mr-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500 dark:text-slate-400 mr-2">
             <Filter className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
             <span>Filter:</span>
+            <span className="ml-1 px-1.5 py-0.5 rounded-md bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 text-[11px] font-mono">
+              {filteredProjects.length}
+            </span>
           </div>
 
           {categories.map((category) => {
