@@ -132,7 +132,7 @@ export const EducationSection: React.FC<SectionProps> = ({ id = 'education', cla
                         onClick={() => setIsModalOpen(true)}
                         variant="primary"
                         size="md"
-                        className="font-bold shadow-sm hover:shadow transition-all text-xs sm:text-sm px-4 py-2"
+                        className="font-bold shadow-sm hover:shadow transition-all text-xs sm:text-sm px-4 py-2 w-full sm:w-auto text-center justify-center"
                         icon={<ChevronRight className="w-4 h-4" />}
                         iconPosition="right"
                       >

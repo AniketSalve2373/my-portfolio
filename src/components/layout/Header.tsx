@@ -32,12 +32,20 @@ export const Header: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    const rafId = requestAnimationFrame(handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, [handleScroll]);
 
   // Close mobile menu on Escape key press
@@ -83,11 +91,11 @@ export const Header: React.FC = () => {
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 dark:bg-blue-600 text-white flex items-center justify-center font-mono font-bold text-sm shadow-xs group-hover:bg-blue-700 dark:group-hover:bg-blue-500 transition-colors shrink-0">
               <Code2 className="w-5 h-5" />
             </div>
-            <div className="flex flex-col">
-              <span className="leading-tight font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <div className="flex flex-col min-w-0">
+              <span className="leading-tight font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate max-w-[150px] xs:max-w-none">
                 {siteConfig.name}
               </span>
-              <span className="text-[10px] sm:text-xs font-mono font-medium text-slate-500 dark:text-slate-400 tracking-tight">
+              <span className="text-[10px] sm:text-xs font-mono font-medium text-slate-500 dark:text-slate-400 tracking-tight truncate max-w-[130px] xs:max-w-[200px] sm:max-w-none">
                 {siteConfig.title}
               </span>
             </div>
@@ -103,7 +111,7 @@ export const Header: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all duration-200 relative ${
+                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all duration-200 relative focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
                     isActive
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50/90 dark:bg-blue-950/60 font-semibold'
                       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/80 dark:hover:bg-slate-800/60'
@@ -123,7 +131,7 @@ export const Header: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="xl:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer transition-colors"
+              className="xl:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-menu"
@@ -158,7 +166,7 @@ export const Header: React.FC = () => {
                     href={item.href}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 flex items-center justify-between ${
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 flex items-center justify-between focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
                       isActive
                         ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 font-semibold border-l-4 border-blue-600 dark:border-blue-400 pl-3'
                         : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-100'

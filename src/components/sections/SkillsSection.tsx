@@ -250,8 +250,10 @@ export const SkillsSection: React.FC<SectionProps> = ({ id = 'skills', className
           {/* Category Filter Buttons */}
           <div className="flex flex-wrap items-center gap-2">
             <button
+              type="button"
               onClick={() => setSelectedCategoryId('all')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
+              aria-pressed={selectedCategoryId === 'all'}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
                 selectedCategoryId === 'all'
                   ? 'bg-blue-600 text-white shadow-xs'
                   : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-700 hover:text-slate-900 dark:hover:text-slate-200'
@@ -265,8 +267,10 @@ export const SkillsSection: React.FC<SectionProps> = ({ id = 'skills', className
               return (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => setSelectedCategoryId(cat.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                  aria-pressed={isSelected}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none ${
                     isSelected
                       ? 'bg-blue-600 text-white font-semibold shadow-xs'
                       : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-700 hover:text-slate-900 dark:hover:text-slate-200'
@@ -289,22 +293,27 @@ export const SkillsSection: React.FC<SectionProps> = ({ id = 'skills', className
 
           {/* Quick Skill Search Input */}
           <div className="relative w-full md:w-72 shrink-0">
+            <label htmlFor="skills-search-input" className="sr-only">
+              Search skills by keyword
+            </label>
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
               <Search className="w-4 h-4" />
             </div>
             <input
+              id="skills-search-input"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search skills (e.g. Docker, React)..."
-              className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all shadow-2xs"
+              className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500 transition-all shadow-2xs"
             />
             {searchQuery && (
               <button
+                type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
                 title="Clear search"
-                aria-label="Clear search"
+                aria-label="Clear search query"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

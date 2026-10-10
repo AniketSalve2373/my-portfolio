@@ -151,7 +151,7 @@ export const ResumeSection: React.FC<SectionProps> = ({ id = 'resume', className
           <div className="lg:col-span-5 flex flex-col gap-4">
             <Card
               padding="none"
-              className="reveal-card group relative overflow-hidden border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
+              className="reveal-card group relative overflow-hidden border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
               onClick={() => setIsViewerOpen(true)}
               role="button"
               tabIndex={0}

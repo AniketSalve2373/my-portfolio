@@ -91,14 +91,14 @@ export const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto animate-hero-delay-4">
               
               {/* Primary Actions */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
                 <Button
                   href="#projects"
                   variant="primary"
                   size="lg"
                   icon={<ArrowRight className="w-4 h-4" />}
                   iconPosition="right"
-                  className="shadow-md hover:shadow-lg transition-all duration-200"
+                  className="shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto text-center justify-center"
                 >
                   View Projects
                 </Button>
@@ -108,7 +108,7 @@ export const HeroSection: React.FC = () => {
                   variant="outline"
                   size="lg"
                   icon={<FileText className="w-4 h-4" />}
-                  className="hover:border-blue-500/50 transition-all duration-200"
+                  className="hover:border-blue-500/50 transition-all duration-200 w-full sm:w-auto text-center justify-center"
                 >
                   View Resume
                 </Button>
@@ -118,23 +118,23 @@ export const HeroSection: React.FC = () => {
                   variant="ghost"
                   size="lg"
                   icon={<Mail className="w-4 h-4" />}
-                  className="hover:text-blue-600 dark:hover:text-blue-400"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 w-full sm:w-auto text-center justify-center"
                 >
                   Contact Me
                 </Button>
               </div>
 
               {/* Divider on Desktop */}
-              <div className="hidden sm:block w-px h-8 bg-slate-300 dark:bg-slate-800 mx-1" />
+              <div className="hidden sm:block w-px h-8 bg-slate-300 dark:bg-slate-800 mx-1 shrink-0" />
 
               {/* Social Links */}
-              <div className="flex items-center gap-2 pt-2 sm:pt-0">
+              <div className="flex items-center gap-2 pt-1 sm:pt-0">
                 <a
                   href={siteConfig.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 dark:hover:border-blue-500/50 shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer"
-                  aria-label="Aniket Salve LinkedIn Profile"
+                  className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 dark:hover:border-blue-500/50 shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+                  aria-label="Aniket Salve LinkedIn Profile (opens in new tab)"
                   title="LinkedIn Profile"
                 >
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -146,8 +146,8 @@ export const HeroSection: React.FC = () => {
                   href={siteConfig.socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer"
-                  aria-label="Aniket Salve GitHub Profile"
+                  className="w-10 h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-600 shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+                  aria-label="Aniket Salve GitHub Profile (opens in new tab)"
                   title="GitHub Profile"
                 >
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -187,7 +187,7 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 {/* Code Body */}
-                <div className="p-5 overflow-x-auto space-y-1.5 text-slate-300 leading-relaxed">
+                <div className="p-3.5 sm:p-5 overflow-x-auto space-y-1.5 text-slate-300 leading-relaxed text-[11px] sm:text-xs md:text-sm">
                   <div>
                     <span className="text-purple-400">@RestController</span>
                   </div>
@@ -265,7 +265,7 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Floating Feature Card (Bottom-Left) */}
-              <div className="absolute -bottom-5 -left-4 sm:-left-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl shadow-xl flex items-center gap-3">
+              <div className="absolute -bottom-5 left-2 sm:-left-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2.5 sm:p-3 rounded-xl shadow-xl flex items-center gap-2.5 sm:gap-3">
                 <div className="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 font-bold">
                   <Code2 className="w-5 h-5" />
                 </div>

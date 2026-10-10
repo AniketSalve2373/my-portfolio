@@ -58,6 +58,31 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Focus trap inside modal
+  const handleKeyDownModal = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'Tab' || !modalRef.current) return;
+
+    const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -74,6 +99,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
     >
       <div
         ref={modalRef}
+        onKeyDown={handleKeyDownModal}
         className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl w-full max-w-5xl h-[92vh] sm:h-[88vh] flex flex-col overflow-hidden relative animate-modal-content"
       >
         {/* Header Bar */}
@@ -131,7 +157,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
               ref={closeButtonRef}
               onClick={onClose}
               type="button"
-              className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer ml-1"
+              className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
               aria-label="Close resume viewer"
             >
               <X className="w-5 h-5" />

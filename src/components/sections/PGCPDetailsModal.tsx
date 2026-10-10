@@ -100,17 +100,17 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
         className="relative w-full max-w-4xl max-h-[92vh] sm:max-h-[90vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-all duration-200 animate-modal-content"
       >
         {/* Modal Pinned Header */}
-        <div className="shrink-0 p-5 sm:p-6 bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 text-white border-b border-blue-800/50 flex items-start justify-between gap-4">
-          <div className="space-y-1.5 pr-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-400/30">
+        <div className="shrink-0 p-4 sm:p-6 bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 text-white border-b border-blue-800/50 flex items-start justify-between gap-3 sm:gap-4">
+          <div className="space-y-1.5 pr-1 sm:pr-2 min-w-0">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-400/30">
                 <Sparkles className="w-3 h-3 text-blue-400" /> C-DAC Post Graduate Specialization
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium bg-slate-800 text-slate-300 border border-slate-700">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-medium bg-slate-800 text-slate-300 border border-slate-700">
                 <Calendar className="w-3 h-3 text-teal-400" /> Completed: {details.completedYear}
               </span>
             </div>
-            <h2 id="pgcp-modal-title" className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+            <h2 id="pgcp-modal-title" className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight break-words">
               {details.programme}
             </h2>
             <div className="flex items-center gap-2 text-blue-200 text-xs sm:text-sm font-medium">
@@ -124,14 +124,14 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
             ref={closeButtonRef}
             onClick={onClose}
             aria-label="Close programme details modal"
-            className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="flex-1 overflow-y-auto p-5 sm:p-6 md:p-8 space-y-8 divide-y divide-slate-100 dark:divide-slate-800/80">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 divide-y divide-slate-100 dark:divide-slate-800/80">
           
           {/* STATISTICS GRID */}
           <div className="space-y-3">
@@ -239,7 +239,7 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
                 rel="noopener noreferrer"
                 variant="primary"
                 size="md"
-                className="shrink-0 font-bold shadow-md hover:shadow-lg transition-shadow"
+                className="w-full sm:w-auto shrink-0 font-bold shadow-md hover:shadow-lg transition-shadow text-center justify-center"
                 icon={<ExternalLink className="w-4 h-4" />}
                 iconPosition="right"
               >
@@ -251,7 +251,7 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
         </div>
 
         {/* Modal Pinned Footer */}
-        <div className="shrink-0 p-4 bg-slate-50 dark:bg-slate-900/90 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+        <div className="shrink-0 p-3.5 sm:p-4 bg-slate-50 dark:bg-slate-900/90 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
           <span className="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:inline">
             Press <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded">ESC</kbd> or click anywhere outside to close
           </span>
@@ -259,7 +259,7 @@ export const PGCPDetailsModal: React.FC<PGCPDetailsModalProps> = ({
             onClick={onClose}
             variant="outline"
             size="sm"
-            className="ml-auto px-5"
+            className="w-full sm:w-auto sm:ml-auto px-5 text-center justify-center"
           >
             Close
           </Button>

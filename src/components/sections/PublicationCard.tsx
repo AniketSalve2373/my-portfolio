@@ -137,7 +137,8 @@ export const PublicationCard: React.FC<PublicationCardProps> = ({ publication })
               size="md"
               icon={<ExternalLink className="w-4 h-4" />}
               iconPosition="right"
-              className="shadow-md hover:shadow-lg transition-all"
+              className="shadow-md hover:shadow-lg transition-all w-full sm:w-auto text-center justify-center"
+              aria-label={`View "${publication.title}" research publication (opens in new tab)`}
             >
               View Publication
             </Button>
@@ -149,7 +150,8 @@ export const PublicationCard: React.FC<PublicationCardProps> = ({ publication })
               variant="outline"
               size="md"
               icon={copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-              className="hover:border-slate-400 dark:hover:border-slate-600"
+              className="hover:border-slate-400 dark:hover:border-slate-600 w-full sm:w-auto text-center justify-center"
+              aria-label="Copy research paper citation text to clipboard"
             >
               {copied ? 'Citation Copied!' : 'Copy Citation'}
             </Button>

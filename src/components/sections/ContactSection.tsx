@@ -213,7 +213,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                   </span>
                   <a
                     href={`mailto:${contactData.email}`}
-                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors"
+                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded"
                   >
                     {contactData.email}
                   </a>
@@ -224,15 +224,15 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                 <button
                   type="button"
                   onClick={() => handleCopy(contactData.email, 'email')}
-                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
                   title="Copy email to clipboard"
-                  aria-label="Copy email address"
+                  aria-label="Copy email address to clipboard"
                 >
                   {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                 </button>
                 <a
                   href={`mailto:${contactData.email}`}
-                  className="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-lg transition-colors"
+                  className="p-2 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
                   title="Open mail client"
                   aria-label="Open default mail client"
                 >
@@ -253,7 +253,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                   </span>
                   <a
                     href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
-                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-teal-600 dark:hover:text-teal-400 font-mono truncate block transition-colors"
+                    className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-teal-600 dark:hover:text-teal-400 font-mono truncate block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none rounded"
                   >
                     {contactData.phone}
                   </a>
@@ -264,15 +264,15 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                 <button
                   type="button"
                   onClick={() => handleCopy(contactData.phone, 'phone')}
-                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+                  className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none"
                   title="Copy phone to clipboard"
-                  aria-label="Copy phone number"
+                  aria-label="Copy phone number to clipboard"
                 >
                   {copiedPhone ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                 </button>
                 <a
                   href={`tel:${contactData.phone.replace(/\s+/g, '')}`}
-                  className="p-2 text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-950/50 rounded-lg transition-colors"
+                  className="p-2 text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-950/50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none"
                   title="Call phone number"
                   aria-label="Call phone number"
                 >
@@ -288,7 +288,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                 href={contactData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xs transition-all group"
+                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-xs transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
                 aria-label="Aniket Salve LinkedIn profile (opens in new tab)"
               >
                 <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -310,7 +310,7 @@ export const ContactSection: React.FC<SectionProps> = ({ id = 'contact', classNa
                 href={contactData.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-xs transition-all group"
+                className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-xs transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
                 aria-label="Aniket Salve GitHub profile (opens in new tab)"
               >
                 <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">

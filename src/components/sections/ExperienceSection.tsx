@@ -69,7 +69,7 @@ export const ExperienceSection: React.FC<SectionProps> = ({ id = 'experience', c
             </div>
 
             {/* Work Experience Cards List */}
-            <div className="relative pl-4 sm:pl-6 md:pl-8 border-l-2 border-blue-200 dark:border-blue-900/50 space-y-8">
+            <div className="relative ml-2 sm:ml-0 pl-4 sm:pl-6 md:pl-8 border-l-2 border-blue-200 dark:border-blue-900/50 space-y-8">
               {workExperienceData.map((exp) => (
                 <div key={exp.id} className="relative group">
                   {/* Timeline Node Icon */}
@@ -211,22 +211,22 @@ export const ExperienceSection: React.FC<SectionProps> = ({ id = 'experience', c
                         </p>
                         
                         {/* Summary Badges Grid */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Duration</div>
-                            <div className="text-sm font-bold text-slate-900 dark:text-slate-100">{training.devSecOpsDetails.trainingDuration}</div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Duration</div>
+                            <div className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100">{training.devSecOpsDetails.trainingDuration}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-900/60 text-center">
-                            <div className="text-[11px] font-mono text-teal-600 dark:text-teal-400 uppercase tracking-wider">Grade</div>
-                            <div className="text-sm font-bold text-teal-700 dark:text-teal-300">Grade {training.devSecOpsDetails.grade}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-900/60 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-teal-600 dark:text-teal-400 uppercase tracking-wider">Grade</div>
+                            <div className="text-xs sm:text-sm font-bold text-teal-700 dark:text-teal-300">Grade {training.devSecOpsDetails.grade}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 text-center">
-                            <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400 uppercase tracking-wider">Score</div>
-                            <div className="text-sm font-bold text-blue-700 dark:text-blue-300">{training.devSecOpsDetails.performance}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-blue-600 dark:text-blue-400 uppercase tracking-wider">Score</div>
+                            <div className="text-xs sm:text-sm font-bold text-blue-700 dark:text-blue-300">{training.devSecOpsDetails.performance}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mode</div>
-                            <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">{training.devSecOpsDetails.mode}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Mode</div>
+                            <div className="text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">{training.devSecOpsDetails.mode}</div>
                           </div>
                         </div>
                       </div>
@@ -234,22 +234,22 @@ export const ExperienceSection: React.FC<SectionProps> = ({ id = 'experience', c
 
                     {training.type === 'generation-india' && training.generationIndiaDetails && (
                       <div className="space-y-4 mb-6">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Training Partner</div>
-                            <div className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">{training.generationIndiaDetails.trainingPartner}</div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Training Partner</div>
+                            <div className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-slate-100 truncate">{training.generationIndiaDetails.trainingPartner}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Centre</div>
-                            <div className="text-xs font-bold text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.centre}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Centre</div>
+                            <div className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.centre}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Batch ID</div>
-                            <div className="text-xs font-bold font-mono text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.batchId}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Batch ID</div>
+                            <div className="text-[11px] sm:text-xs font-bold font-mono text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.batchId}</div>
                           </div>
-                          <div className="p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
-                            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Issue Date</div>
-                            <div className="text-xs font-bold text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.issueDate}</div>
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 text-center">
+                            <div className="text-[10px] sm:text-[11px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Issue Date</div>
+                            <div className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-slate-100">{training.generationIndiaDetails.issueDate}</div>
                           </div>
                         </div>
                       </div>

@@ -101,22 +101,22 @@ export const AboutSection: React.FC<SectionProps> = ({ id = 'about', className =
         </div>
 
         {/* Quick Fast Facts / Recruiter Snapshot Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
-            <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 dark:text-blue-400 mb-1">1200+</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Hours C-DAC Rigorous Training</div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div className="p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-blue-600 dark:text-blue-400 mb-1">1200+</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Hours C-DAC Rigorous Training</div>
           </div>
-          <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
-            <div className="text-2xl sm:text-3xl font-extrabold text-teal-600 dark:text-teal-400 mb-1">8.34</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">B.E. CSE Graduation CGPA</div>
+          <div className="p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-teal-600 dark:text-teal-400 mb-1">8.34</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">B.E. CSE Graduation CGPA</div>
           </div>
-          <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
-            <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-1">2026</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">C-DAC PG Certificate Year</div>
+          <div className="p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-1">2026</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">C-DAC PG Certificate Year</div>
           </div>
-          <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-1">Java</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">Full Stack Core Focus</div>
+          <div className="p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-2xs">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-1">Java</div>
+            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Full Stack Core Focus</div>
           </div>
         </div>
 
