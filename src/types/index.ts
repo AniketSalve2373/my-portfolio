@@ -157,3 +157,17 @@ export interface PrimaryStackItem {
   iconName: string;
   tag: string;
 }
+
+export interface CertificationItem {
+  id: string;
+  name: string;
+  issuer: 'IBM' | 'Oracle' | string;
+  category: string;
+  verificationUrl: string;
+  technologies: string[];
+  platform: 'Coursera' | 'Oracle CertView' | string;
+  credentialType: string;
+  summary: string;
+  keyCompetencies?: string[];
+}
+

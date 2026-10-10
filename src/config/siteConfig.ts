@@ -228,3 +228,5 @@ export {
   isPrimaryStackSkill,
   PRIMARY_STACK_NAMES,
 } from './skillsData';
+export { certificationsData } from './certificationsData';
+
