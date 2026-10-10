@@ -229,4 +229,6 @@ export {
   PRIMARY_STACK_NAMES,
 } from './skillsData';
 export { certificationsData } from './certificationsData';
+export { resumeData } from './resumeData';
+export { publicationData } from './publicationData';
 

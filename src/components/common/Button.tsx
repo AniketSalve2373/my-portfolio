@@ -9,6 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   target,
   rel,
+  download,
   ...props
 }) => {
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed';
@@ -46,6 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
         href={href}
         target={target}
         rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        download={download}
         className={combinedClasses}
       >
         {icon && iconPosition === 'left' && <span className="inline-flex shrink-0">{icon}</span>}

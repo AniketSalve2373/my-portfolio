@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   hoverEffect?: boolean;
@@ -12,6 +12,7 @@ export const Card: React.FC<CardProps> = ({
   className = '',
   hoverEffect = false,
   padding = 'md',
+  ...props
 }) => {
   const paddingStyles = {
     none: 'p-0',
@@ -27,6 +28,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={`bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/80 rounded-xl shadow-xs ${paddingStyles[padding]} ${hoverStyle} ${className}`}
+      {...props}
     >
       {children}
     </div>

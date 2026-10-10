@@ -171,3 +171,28 @@ export interface CertificationItem {
   keyCompetencies?: string[];
 }
 
+export interface ResumeConfig {
+  fileName: string;
+  filePath: string;
+  candidateName: string;
+  role: string;
+  headline: string;
+  highlights: string[];
+  skillsList: string[];
+  sectionsOverview: {
+    title: string;
+    description: string;
+  }[];
+}
+
+export interface PublicationItem {
+  id: string;
+  title: string;
+  journal: string;
+  paperNumber: string;
+  authors: string[];
+  publicationUrl: string;
+  primaryAuthor?: string;
+  researchFocus?: string[];
+}
+
